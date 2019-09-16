@@ -13,11 +13,9 @@ delete from klienci;
 delete from stawka_VAT;
 */
 
-
-
 create table stawka_VAT (id_stawka_VAT int primary key,	-- nazwa kolumny stawka_VAT.id_stawka_VAT				
 					nazwa  varchar (150),
-                    procent numeric (8,0)); -- za długie pole 99999999%; 23.50%; numeric(3,2); Twoje: kwota*(100+procent)/100; alternatywne (0.23): kwota*(1+procent)
+                    procent numeric (3,2)); -- za długie pole 99999999%; 23.50%; numeric(3,2); Twoje: kwota*(100+procent)/100; alternatywne (0.23): kwota*(1+procent)
 
 create table produkty (id_produktu int auto_increment primary key,
 					nazwa varchar (150) not null,
@@ -35,8 +33,9 @@ create table klienci (id_klienta int auto_increment primary key,
              
 create table zamówienia (id_zamówienia int auto_increment primary key,
 						id_klienta int not null,
-						data datetime not null, -- co to jest?
 						foreign key (id_klienta) references klienci(id_klienta));
+                        
+                        select * from zamówienia;
                         
 create table statusy_zamówień (id_zamówienia int,
 								data datetime,
@@ -44,33 +43,25 @@ create table statusy_zamówień (id_zamówienia int,
                                 primary key(id_zamówienia, data),
                                 foreign key (id_zamówienia) references zamówienia(id_zamówienia));
   
-insert into stawka_VAT(id_stawka_VAT, nazwa, procent) values(1,'23%',23);
+insert into stawka_VAT(id_stawka_VAT, nazwa, procent) values(1,'23%',0.23);
 
-insert into stawka_VAT(id_stawka_VAT, nazwa, procent) values(2,'8%',8);
+insert into stawka_VAT(id_stawka_VAT, nazwa, procent) values(2,'8%',0.08);
 
-insert into stawka_VAT(id_stawka_VAT, nazwa, procent) values(3, '5%',5);
+insert into stawka_VAT(id_stawka_VAT, nazwa, procent) values(3, '5%',0.05);
 
-insert into stawka_VAT(id_stawka_VAT, nazwa, procent) values(4, '0%',0);
+insert into stawka_VAT(id_stawka_VAT, nazwa, procent) values(4, '0%',0.00);
 
-insert into stawka_VAT(id_stawka_VAT, nazwa, procent) values(5, 'nie podlega',0);
-
-
-	select * from stawka_VAT;
-              
-                    
-	
+insert into stawka_VAT(id_stawka_VAT, nazwa, procent) values(5, 'nie podlega',0.00);
 
 
-                    
-                    
-                    
-                    
+select * from stawka_VAT;
+                            
 insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('zielony rowerek biegowy', '754.00', 1);
 set @ziel_ro_bieg = last_insert_id();
 
 insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('hulajnoga elektryczna', '1645.50', 2);
 set @hul_ele = last_insert_id();
-
+/*
 insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('wrotki retro', '399.99', 1);
 insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('rolki', '549.22', 1);
 insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('czerwony rowerek biegowy', '954.00', 1);
@@ -92,15 +83,14 @@ insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('niebieski rower
 insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('czerwony rowerek biegowy', '123.00', 1);
 
 select *from produkty;
-
-
-                                
+     */                           
 -- alter table klienci auto_increment=10000;
                                 
 insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Jasio Wysoki', 'Polska', '52-658', 'Łódż', 'św. Teresy od Dzieciątka Jezus', '289');
 set @last_klient_id = last_insert_id();
-iNSERT INTO zamówienia (id_klienta, data) values (@last_klient_id, NOW());
+iNSERT INTO zamówienia (id_klienta,) values (@last_klient_id, );
 set @last_zamowienie_id = last_insert_id();
+/* 
 insert into statusy_zamówień (id_zamówienia, data, status) values (@last_zamowienie_id,'2019-01-01 12:13:15','złożone');
 insert into statusy_zamówień (id_zamówienia, data, status) values (@last_zamowienie_id,'2019-01-10 10:13:15','opłacone');
 insert into statusy_zamówień (id_zamówienia, data, status) values (@last_zamowienie_id,'2019-01-11 11:13:15','zrealizowane');
@@ -115,7 +105,6 @@ set @last_zamowienie_id = last_insert_id();
 iNSERT INTO zamówienia (id_klienta, data) values (@last_klient_id, NOW());
 set @last_zamowienie_id = last_insert_id();
 -- ...
-
 insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('EURO-net Sp. z o.o.', 'Polska', '02-447', 'Warszawa',  'Muszkieterów', '254');
 set @last_klient_id = last_insert_id();
 iNSERT INTO zamówienia (id_klienta, data) values (@last_klient_id, NOW());
@@ -133,18 +122,8 @@ insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('O
 insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Ośrodek Reprezentacyjny Ministerstwa Obrony Narodowej', 'Polska', '05-800', 'Pruszków', 'Grodziska', '1');					
 insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Department of Child and Adolescent Psychiatry', 'Polska', '60-567', 'Poznań', 'Szpitalna', '27/33');
 insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Poradnia Rehabilitacyjna dla Dzieci im. Władysława Basiaka', 'Polska', '26-610', 'Radom', 'Mikołaja Reja', '26');
-
- 
  
 select *from klienci;
-
-
-
-
-                        
-					
-
-                      
 
 iNSERT INTO zamówienia (id_klienta, data) values (2, NOW());
 iNSERT INTO zamówienia (id_klienta, data) values (3, NOW());
@@ -156,7 +135,6 @@ iNSERT INTO zamówienia (id_klienta, data) values (8, NOW());
 iNSERT INTO zamówienia (id_klienta, data) values (9, NOW());
 iNSERT INTO zamówienia (id_klienta, data) values (10, NOW());
 iNSERT INTO zamówienia (id_klienta, data) values (11, NOW());
-
 iNSERT INTO zamówienia (id_klienta, data) values (3, NOW());
 iNSERT INTO zamówienia (id_klienta, data) values (1, NOW());
 iNSERT INTO zamówienia (id_klienta, data) values (4, NOW());
@@ -194,16 +172,8 @@ iNSERT INTO zamówienia (id_klienta, data) values (8, NOW());
 iNSERT INTO zamówienia (id_klienta, data) values (7, NOW());
 iNSERT INTO zamówienia (id_klienta, data) values (4, NOW());
                                            
-		
-
 select*from zamówienia;    
 				                      
-                        
-
-
-
-
-
 insert into statusy_zamówień (id_zamówienia, data, status) values (2,'2019-03-10 10:05:15','złożone');
 insert into statusy_zamówień (id_zamówienia, data, status) values (3,'2019-05-10 10:22:22','złożone');
 insert into statusy_zamówień (id_zamówienia, data, status) values (4,'2019-05-15 11:25:59','złożone');
@@ -253,10 +223,6 @@ insert into statusy_zamówień (id_zamówienia, data, status) values (47,'2019-0
 insert into statusy_zamówień (id_zamówienia, data, status) values (48,'2019-07-27 04:25:55','złożone');
 insert into statusy_zamówień (id_zamówienia, data, status) values (49,'2019-07-28 12:32:45','złożone');
 insert into statusy_zamówień (id_zamówienia, data, status) values (50,'2019-07-28 22:35:33','złożone');
-
-
-
-
 insert into statusy_zamówień (id_zamówienia, data, status) values (2,'2019-03-11 10:05:15','opłacone');
 insert into statusy_zamówień (id_zamówienia, data, status) values (3,'2019-05-10 10:50:22','opłacone');
 insert into statusy_zamówień (id_zamówienia, data, status) values (4,'2019-07-31 19:59:29','opłacone');
@@ -306,9 +272,6 @@ insert into statusy_zamówień (id_zamówienia, data, status) values (47,'2019-0
 insert into statusy_zamówień (id_zamówienia, data, status) values (48,'2019-07-27 04:31:52','opłacone');
 insert into statusy_zamówień (id_zamówienia, data, status) values (49,'2019-07-30 08:52:48','opłacone');
 insert into statusy_zamówień (id_zamówienia, data, status) values (50,'2019-07-28 22:43:42','opłacone');
-
-
-
 insert into statusy_zamówień (id_zamówienia, data, status) values (2,'2019-03-12 12:55:15','zrealizowane');
 insert into statusy_zamówień (id_zamówienia, data, status) values (3,'2019-05-11 10:50:22','zrealizowane');
 insert into statusy_zamówień (id_zamówienia, data, status) values (4,'2019-08-03 23:59:29','zrealizowane');
@@ -359,7 +322,8 @@ insert into statusy_zamówień (id_zamówienia, data, status) values (48,'2019-0
 insert into statusy_zamówień (id_zamówienia, data, status) values (49,'2019-07-31 16:45:18','zrealizowane');
 insert into statusy_zamówień (id_zamówienia, data, status) values (50,'2019-07-31 12:48:52','zrealizowane');
 
-
 select*from statusy_zamówień; 
+*/
+
 
 select * from zamówienia, statusy_zamówień where zamówienia.id_zamówienia = statusy_zamówień.id_zamówienia;
