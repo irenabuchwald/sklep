@@ -140,7 +140,7 @@ INSERT INTO szczegóły(id_zamówienia, LP, id_produktu, ilość, rabat) values 
 
 insert into statusy_zamówień (id_zamówienia, data, status) values (@last_zamowienie_id,'2019-01-01 12:13:15','złożone');
 insert into statusy_zamówień (id_zamówienia, data, status) values (@last_zamowienie_id,'2019-01-10 10:13:15','opłacone');
-insert into statusy_zamówień (id_zamówienia, data, status) values (@last_zamowienie_id,'2019-01-11 11:13:15','zrealizowane');
+insert into statusy_zamówień (id_zamówienia, data, status) values (@last_zamowienie_id,'2020-01-11 11:13:15','zrealizowane');
 /*
 select LP,
 	   produkty.nazwa,
@@ -166,6 +166,14 @@ select id_zamówienia, sum(wartość_netto), sum(vat), sum(wartość_brutto) fro
 where id_zamówienia = 1
 group by id_zamówienia;
 
+select id_zamówienia, status 
+  from statusy_zamówień z1
+ where data = (select max(data) from statusy_zamówień z2 where data<NOW() and z2.id_zamówienia=z1.id_zamówienia);
+
+select id_zamówienia, max(data)
+from statusy_zamówień
+where data<NOW()
+group by id_zamówienia;
 
 /*
 iNSERT INTO zamówienia (id_klienta) values (@last_klient_id);
