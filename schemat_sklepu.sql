@@ -2,6 +2,7 @@
 drop table if exists produkty;
 drop table if exists stawka_VAT;
 drop table if exists statusy_zamówień;
+drop table szczegóły;
 drop table if exists zamówienia;
 drop table if exists klienci;
 
@@ -42,6 +43,15 @@ create table statusy_zamówień (id_zamówienia int,
                                 status varchar(20) not null,
                                 primary key(id_zamówienia, data),
                                 foreign key (id_zamówienia) references zamówienia(id_zamówienia));
+                                
+create table szczegóły (id_zamówienia int,
+						LP int,
+                        id_produktu int,
+                        ilość numeric(8,2) not null,
+                        rabat numeric(3,2) not null default 0,
+                        primary key(id_zamowienia, LP),
+                        foreign key(id_zamówienia) references zamówienia(id_zamówienia),
+                        foreign key(id_produktu) references produkty(id_produktu));
   
 insert into stawka_VAT(id_stawka_VAT, nazwa, procent) values(1,'23%',0.23);
 
