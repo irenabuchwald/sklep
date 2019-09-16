@@ -76,6 +76,7 @@ insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('G
 insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Surf&Skate Wave Summer Camp', 'Polska', '59-258', 'Warszawa', 'Górczewska', '147');
 insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Centrum Leczniczo-Rehabilitacyjne i Medycyny Pracy ATTIS Sp. z o.o.', 'Polska', '55-650','Warszawa', 'Górczewska', '78');
 insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Ośrodek Wypoczynkowy Marysieńka', 'Polska', '26-400', 'Przysucha', 'Topornia', '23');
+insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Ośrodek Wypoczynkowy Relax', 'Polska', '85-134', 'Radom', 'Klasztorna', '65');
 insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Ośrodek Reprezentacyjny Ministerstwa Obrony Narodowej', 'Polska', '05-800', 'Pruszków', 'Grodziska', '1');					
 insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Department of Child and Adolescent Psychiatry', 'Polska', '60-567', 'Poznań', 'Szpitalna', '27/33');
 insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Poradnia Rehabilitacyjna dla Dzieci im. Władysława Basiaka', 'Polska', '26-610', 'Radom', 'Mikołaja Reja', '26');
