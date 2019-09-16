@@ -2,7 +2,7 @@
 drop table if exists produkty;
 drop table if exists stawka_VAT;
 drop table if exists statusy_zamówień;
-drop table szczegóły;
+drop table if exists szczegóły;
 drop table if exists zamówienia;
 drop table if exists klienci;
 
@@ -71,29 +71,47 @@ set @ziel_ro_bieg = last_insert_id();
 
 insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('hulajnoga elektryczna', '1645.50', 2);
 set @hul_ele = last_insert_id();
-/*
 insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('wrotki retro', '399.99', 1);
+set @wrotki_retro = last_insert_id();
 insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('rolki', '549.22', 1);
+set @rolki = last_insert_id();
 insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('czerwony rowerek biegowy', '954.00', 1);
+set @czer_ro_bie = last_insert_id();
 insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('hulajnoga napędzana nogą', '905.00', 2);
+set @hul_nap_noga = last_insert_id();
 insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('ochraniacze na łokcie', '150.23', 4);
+set @ochr_na_lok = last_insert_id();
 insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('ochraniacze na kolana', '170.78', 4);
+set @ochr_na_lok = last_insert_id();
 insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('ochraniacz na twarz', '650.00', 4);
+set @ochr_na_twa = last_insert_id();
 insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('kask sportowy zielony', '458.00', 5);
+set @kask_spor_ziel = last_insert_id();
 insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('kask sportowy czerwony', '505.00', 5);
+set @kask_spor_czer = last_insert_id();
 insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('wrotki nowoczesne', '299.99', 1);
+set @wrot_nowo = last_insert_id();
 insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('deskorolka elektryczna', '599.99', 3);
-insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('gokard elektryczny zielony', '5999.99', 3);    
-insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('gokard elektryczny czaerny', '6500.00', 3); 
+set @desko_elek = last_insert_id();
+insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('gokard elektryczny zielony', '5999.99', 3);  
+set @go_elek_ziel = last_insert_id();
+insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('gokard elektryczny czarny', '6500.00', 3); 
+set @go_elek_czar = last_insert_id();
 insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('segway', '4300.00', 1); 
+set @segway = last_insert_id();
 insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('monocykl elektryczny', '1000.00', 3); 
+set @mono_elektr= last_insert_id();
 insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('skuter elektryczny czarny', '12199.99', 2); 
+set @sku_elek_czarny = last_insert_id();
 insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('skuter elektryczny bialy', '13199.99', 2);
+set @sku_elek_bialy= last_insert_id();
 insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('niebieski rowerek biegowy', '754.00', 1);
+set @nie_ro_bie = last_insert_id();
 insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('czerwony rowerek biegowy', '123.00', 1);
+set @czer_ro_bie = last_insert_id();
 
 select *from produkty;
-     */                           
+							
 -- alter table klienci auto_increment=10000;
                                 
 insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Jasio Wysoki', 'Polska', '52-658', 'Łódż', 'św. Teresy od Dzieciątka Jezus', '289');
