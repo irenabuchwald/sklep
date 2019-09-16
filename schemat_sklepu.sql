@@ -52,6 +52,21 @@ create table szczegóły (id_zamówienia int,
                         primary key(id_zamówienia, LP),
                         foreign key(id_zamówienia) references zamówienia(id_zamówienia),
                         foreign key(id_produktu) references produkty(id_produktu));
+                        
+create or replace view szczegoly_zamowien as
+select id_zamówienia,
+       LP,
+	   produkty.nazwa as nazwa_produktu,
+       ilość,
+       cena_netto,
+       ifnull(rabat, '--') as rabat,
+       FORMAT(cena_netto*ilość*(1-ifnull(rabat, 0)), 2) as wartość_netto,
+       stawka_VAT.nazwa as stawka_vat,
+       FORMAT(cena_netto*ilość*procent*(1-ifnull(rabat, 0)), 2) as VAT,
+       FORMAT(cena_netto*ilość*(procent+1)*(1-ifnull(rabat, 0)), 2) as wartość_brutto
+ from szczegóły, produkty, stawka_VAT
+where produkty.id_produktu = szczegóły.id_produktu
+  and produkty.id_stawka_VAT = stawka_VAT.id_stawka_VAT;
   
 insert into stawka_VAT(id_stawka_VAT, nazwa, procent) values(1,'23%',0.23);
 
@@ -126,7 +141,7 @@ INSERT INTO szczegóły(id_zamówienia, LP, id_produktu, ilość, rabat) values 
 insert into statusy_zamówień (id_zamówienia, data, status) values (@last_zamowienie_id,'2019-01-01 12:13:15','złożone');
 insert into statusy_zamówień (id_zamówienia, data, status) values (@last_zamowienie_id,'2019-01-10 10:13:15','opłacone');
 insert into statusy_zamówień (id_zamówienia, data, status) values (@last_zamowienie_id,'2019-01-11 11:13:15','zrealizowane');
-
+/*
 select LP,
 	   produkty.nazwa,
        ilość,
@@ -141,6 +156,16 @@ where szczegóły.id_zamówienia = zamówienia.id_zamówienia
   and produkty.id_produktu = szczegóły.id_produktu
   and produkty.id_stawka_VAT = stawka_VAT.id_stawka_VAT
 order by LP;
+*/
+
+select * from szczegoly_zamowien
+where id_zamówienia = 1
+order by id_zamówienia, LP;
+
+select id_zamówienia, sum(wartość_netto), sum(vat), sum(wartość_brutto) from szczegoly_zamowien
+where id_zamówienia = 1
+group by id_zamówienia;
+
 
 /*
 iNSERT INTO zamówienia (id_klienta) values (@last_klient_id);
