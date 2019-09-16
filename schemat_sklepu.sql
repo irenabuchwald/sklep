@@ -48,7 +48,7 @@ create table szczegóły (id_zamówienia int,
 						LP int,
                         id_produktu int,
                         ilość numeric(8,2) not null,
-                        rabat numeric(3,2) not null default 0,
+                        rabat numeric(3,2),
                         primary key(id_zamówienia, LP),
                         foreign key(id_zamówienia) references zamówienia(id_zamówienia),
                         foreign key(id_produktu) references produkty(id_produktu));
@@ -127,7 +127,20 @@ insert into statusy_zamówień (id_zamówienia, data, status) values (@last_zamo
 insert into statusy_zamówień (id_zamówienia, data, status) values (@last_zamowienie_id,'2019-01-10 10:13:15','opłacone');
 insert into statusy_zamówień (id_zamówienia, data, status) values (@last_zamowienie_id,'2019-01-11 11:13:15','zrealizowane');
 
-
+select LP,
+	   produkty.nazwa,
+       ilość,
+       cena_netto,
+       ifnull(rabat, '--') as rabat,
+       cena_netto*ilość as wartość_netto,
+       stawka_VAT.nazwa,
+       cena_netto*ilość*procent as VAT,
+       cena_netto*ilość*(procent+1) as wartość_brutto
+ from zamówienia, szczegóły, produkty, stawka_VAT
+where szczegóły.id_zamówienia = zamówienia.id_zamówienia
+  and produkty.id_produktu = szczegóły.id_produktu
+  and produkty.id_stawka_VAT = stawka_VAT.id_stawka_VAT
+order by LP;
 
 /*
 iNSERT INTO zamówienia (id_klienta) values (@last_klient_id);
