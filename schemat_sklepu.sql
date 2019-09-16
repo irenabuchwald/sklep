@@ -1,8 +1,8 @@
 
+drop table if exists szczegóły;
 drop table if exists produkty;
 drop table if exists stawka_VAT;
 drop table if exists statusy_zamówień;
-drop table if exists szczegóły;
 drop table if exists zamówienia;
 drop table if exists klienci;
 
@@ -49,7 +49,7 @@ create table szczegóły (id_zamówienia int,
                         id_produktu int,
                         ilość numeric(8,2) not null,
                         rabat numeric(3,2) not null default 0,
-                        primary key(id_zamowienia, LP),
+                        primary key(id_zamówienia, LP),
                         foreign key(id_zamówienia) references zamówienia(id_zamówienia),
                         foreign key(id_produktu) references produkty(id_produktu));
   
@@ -68,7 +68,6 @@ select * from stawka_VAT;
                             
 insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('zielony rowerek biegowy', '754.00', 1);
 set @ziel_ro_bieg = last_insert_id();
-
 insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('hulajnoga elektryczna', '1645.50', 2);
 set @hul_ele = last_insert_id();
 insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('wrotki retro', '399.99', 1);
@@ -112,30 +111,40 @@ set @czer_ro_bie = last_insert_id();
 
 select *from produkty;
 							
--- alter table klienci auto_increment=10000;
+alter table klienci auto_increment=10000;
                                 
 insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Jasio Wysoki', 'Polska', '52-658', 'Łódż', 'św. Teresy od Dzieciątka Jezus', '289');
 set @last_klient_id = last_insert_id();
-iNSERT INTO zamówienia (id_klienta,) values (@last_klient_id, );
+
+iNSERT INTO zamówienia(id_klienta) values (@last_klient_id);
 set @last_zamowienie_id = last_insert_id();
-/* 
+
+INSERT INTO szczegóły(id_zamówienia, LP, id_produktu, ilość) values (@last_zamowienie_id, 1, @kask_spor_czer, 2);
+INSERT INTO szczegóły(id_zamówienia, LP, id_produktu, ilość) values (@last_zamowienie_id, 2, @ziel_ro_bieg, 1);
+INSERT INTO szczegóły(id_zamówienia, LP, id_produktu, ilość) values (@last_zamowienie_id, 3, @czer_ro_bie, 1);
+
+insert into statusy_zamówień (id_zamówienia, data, status) values (@last_zamowienie_id,'2019-01-01 12:13:15','złożone');
+insert into statusy_zamówień (id_zamówienia, data, status) values (@last_zamowienie_id,'2019-01-10 10:13:15','opłacone');
+insert into statusy_zamówień (id_zamówienia, data, status) values (@last_zamowienie_id,'2019-01-11 11:13:15','zrealizowane');
+
+
+
+/*
+iNSERT INTO zamówienia (id_klienta) values (@last_klient_id);
+set @last_zamowienie_id = last_insert_id();
+
 insert into statusy_zamówień (id_zamówienia, data, status) values (@last_zamowienie_id,'2019-01-01 12:13:15','złożone');
 insert into statusy_zamówień (id_zamówienia, data, status) values (@last_zamowienie_id,'2019-01-10 10:13:15','opłacone');
 insert into statusy_zamówień (id_zamówienia, data, status) values (@last_zamowienie_id,'2019-01-11 11:13:15','zrealizowane');
 iNSERT INTO zamówienia (id_klienta, data) values (@last_klient_id, NOW());
 set @last_zamowienie_id = last_insert_id();
-insert into statusy_zamówień (id_zamówienia, data, status) values (@last_zamowienie_id,'2019-01-01 12:13:15','złożone');
-insert into statusy_zamówień (id_zamówienia, data, status) values (@last_zamowienie_id,'2019-01-10 10:13:15','opłacone');
-insert into statusy_zamówień (id_zamówienia, data, status) values (@last_zamowienie_id,'2019-01-11 11:13:15','zrealizowane');
-iNSERT INTO zamówienia (id_klienta, data) values (@last_klient_id, NOW());
-set @last_zamowienie_id = last_insert_id();
--- ...
+
 iNSERT INTO zamówienia (id_klienta, data) values (@last_klient_id, NOW());
 set @last_zamowienie_id = last_insert_id();
 -- ...
 insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('EURO-net Sp. z o.o.', 'Polska', '02-447', 'Warszawa',  'Muszkieterów', '254');
 set @last_klient_id = last_insert_id();
-iNSERT INTO zamówienia (id_klienta, data) values (@last_klient_id, NOW());
+iNSERT INTO zamówienia (id_klienta) values (@last_klient_id);
 set @last_zamowienie_id = last_insert_id();
 
 
@@ -352,6 +361,3 @@ insert into statusy_zamówień (id_zamówienia, data, status) values (50,'2019-0
 
 select*from statusy_zamówień; 
 */
-
-
-select * from zamówienia, statusy_zamówień where zamówienia.id_zamówienia = statusy_zamówień.id_zamówienia;
