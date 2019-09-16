@@ -121,7 +121,7 @@ set @last_zamowienie_id = last_insert_id();
 
 INSERT INTO szczegóły(id_zamówienia, LP, id_produktu, ilość) values (@last_zamowienie_id, 1, @kask_spor_czer, 2);
 INSERT INTO szczegóły(id_zamówienia, LP, id_produktu, ilość) values (@last_zamowienie_id, 2, @ziel_ro_bieg, 1);
-INSERT INTO szczegóły(id_zamówienia, LP, id_produktu, ilość) values (@last_zamowienie_id, 3, @czer_ro_bie, 1);
+INSERT INTO szczegóły(id_zamówienia, LP, id_produktu, ilość, rabat) values (@last_zamowienie_id, 3, @czer_ro_bie, 1, 0.05);
 
 insert into statusy_zamówień (id_zamówienia, data, status) values (@last_zamowienie_id,'2019-01-01 12:13:15','złożone');
 insert into statusy_zamówień (id_zamówienia, data, status) values (@last_zamowienie_id,'2019-01-10 10:13:15','opłacone');
@@ -132,10 +132,10 @@ select LP,
        ilość,
        cena_netto,
        ifnull(rabat, '--') as rabat,
-       cena_netto*ilość as wartość_netto,
+       FORMAT(cena_netto*ilość*(1-ifnull(rabat, 0)), 2) as wartość_netto,
        stawka_VAT.nazwa,
-       cena_netto*ilość*procent as VAT,
-       cena_netto*ilość*(procent+1) as wartość_brutto
+       FORMAT(cena_netto*ilość*procent*(1-ifnull(rabat, 0)), 2) as VAT,
+       FORMAT(cena_netto*ilość*(procent+1)*(1-ifnull(rabat, 0)), 2) as wartość_brutto
  from zamówienia, szczegóły, produkty, stawka_VAT
 where szczegóły.id_zamówienia = zamówienia.id_zamówienia
   and produkty.id_produktu = szczegóły.id_produktu
