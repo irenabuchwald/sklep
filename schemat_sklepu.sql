@@ -56,7 +56,7 @@ insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('monocykl elektr
 insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('skuter elektryczny czarny', '12199.99', 2); 
 insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('skuter elektryczny bialy', '13199.99', 2);
 insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('niebieski rowerek biegowy', '754.00', 1);
-
+insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('czerwony rowerek biegowy', '123.00', 1);
 
 select *from produkty;
 
