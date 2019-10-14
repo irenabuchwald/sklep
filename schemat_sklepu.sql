@@ -65,8 +65,8 @@ select id_zamówienia,
        ifnull(rabat, '--') as rabat,
        FORMAT(cena_netto*ilość*(1-ifnull(rabat, 0)), 2) as wartość_netto,
        stawka_VAT.nazwa as stawka_vat,
-       FORMAT(cena_netto*ilość*procent*(1-ifnull(rabat, 0)), 2) as VAT,
-       FORMAT(cena_netto*ilość*(procent+1)*(1-ifnull(rabat, 0)), 2) as wartość_brutto
+       FORMAT(cena_netto*ilość*(1-ifnull(rabat, 0)*procent), 2) as VAT,
+       FORMAT(cena_netto*ilość*(1-ifnull(rabat, 0)*(procent+1)), 2) as wartość_brutto
  from szczegoly, produkty, stawka_VAT
 where produkty.id_produktu = szczegoly.id_produktu
   and produkty.id_stawka_VAT = stawka_VAT.id_stawka_VAT;
