@@ -1,5 +1,7 @@
 
 drop table if exists szczegóły;
+
+drop table if exists szczegoly;
 drop table if exists produkty;
 drop table if exists stawka_VAT;
 drop table if exists statusy_zamówień;
@@ -44,7 +46,7 @@ create table statusy_zamówień (id_zamówienia int,
                                 primary key(id_zamówienia, data),
                                 foreign key (id_zamówienia) references zamówienia(id_zamówienia));
                                 
-create table szczegóły (id_zamówienia int,
+create table szczegoly (id_zamówienia int,
 						LP int,
                         id_produktu int,
                         ilość numeric(8,2) not null,
@@ -65,8 +67,8 @@ select id_zamówienia,
        stawka_VAT.nazwa as stawka_vat,
        FORMAT(cena_netto*ilość*procent*(1-ifnull(rabat, 0)), 2) as VAT,
        FORMAT(cena_netto*ilość*(procent+1)*(1-ifnull(rabat, 0)), 2) as wartość_brutto
- from szczegóły, produkty, stawka_VAT
-where produkty.id_produktu = szczegóły.id_produktu
+ from szczegoly, produkty, stawka_VAT
+where produkty.id_produktu = szczegoly.id_produktu
   and produkty.id_stawka_VAT = stawka_VAT.id_stawka_VAT;
   
 insert into stawka_VAT(id_stawka_VAT, nazwa, procent) values(1,'23%',0.23);
@@ -127,7 +129,7 @@ set @czer_ro_bie = last_insert_id();
 
 select *from produkty;
 
-select * from szczegóły;
+select * from szczegoly;
 							
 alter table klienci auto_increment=10000;
                                 
@@ -137,9 +139,9 @@ set @last_klient_id = last_insert_id();
 iNSERT INTO zamówienia(id_klienta) values (@last_klient_id);
 set @last_zamowienie_id = last_insert_id();
 
-INSERT INTO szczegóły(id_zamówienia, LP, id_produktu, ilość) values (@last_zamowienie_id, 1, @kask_spor_czer, 2);
-INSERT INTO szczegóły(id_zamówienia, LP, id_produktu, ilość) values (@last_zamowienie_id, 2, @ziel_ro_bieg, 1);
-INSERT INTO szczegóły(id_zamówienia, LP, id_produktu, ilość, rabat) values (@last_zamowienie_id, 3, @czer_ro_bie, 1, 0.05);
+INSERT INTO szczegoly(id_zamówienia, LP, id_produktu, ilość) values (@last_zamowienie_id, 1, @kask_spor_czer, 2);
+INSERT INTO szczegoly(id_zamówienia, LP, id_produktu, ilość) values (@last_zamowienie_id, 2, @ziel_ro_bieg, 1);
+INSERT INTO szczegoly(id_zamówienia, LP, id_produktu, ilość, rabat) values (@last_zamowienie_id, 3, @czer_ro_bie, 1, 0.05);
 
 insert into statusy_zamówień (id_zamówienia, data, status) values (@last_zamowienie_id,'2019-01-01 12:13:15','złożone');
 insert into statusy_zamówień (id_zamówienia, data, status) values (@last_zamowienie_id,'2019-01-10 10:13:15','opłacone');
@@ -154,9 +156,9 @@ select LP,
        stawka_VAT.nazwa,
        FORMAT(cena_netto*ilość*procent*(1-ifnull(rabat, 0)), 2) as VAT,
        FORMAT(cena_netto*ilość*(procent+1)*(1-ifnull(rabat, 0)), 2) as wartość_brutto
- from zamówienia, szczegóły, produkty, stawka_VAT
-where szczegóły.id_zamówienia = zamówienia.id_zamówienia
-  and produkty.id_produktu = szczegóły.id_produktu
+ from zamówienia, szczegoly, produkty, stawka_VAT
+where szczegoly.id_zamówienia = zamówienia.id_zamówienia
+  and produkty.id_produktu = szczegoly.id_produktu
   and produkty.id_stawka_VAT = stawka_VAT.id_stawka_VAT
 order by LP;
 */
