@@ -38,7 +38,7 @@ create table zamówienia (id_zamówienia int auto_increment primary key,
 						id_klienta int not null,
 						foreign key (id_klienta) references klienci(id_klienta));
                         
-                        select * from zamówienia;
+                      --  select * from zamówienia;
                         
 create table statusy_zamówień (id_zamówienia int,
 								data datetime,
@@ -82,7 +82,7 @@ insert into stawka_VAT(id_stawka_VAT, nazwa, procent) values(4, '0%',0.00);
 insert into stawka_VAT(id_stawka_VAT, nazwa, procent) values(5, 'nie podlega',0.00);
 
 
-select * from stawka_VAT;
+-- select * from stawka_VAT;
                             
 insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('zielony rowerek biegowy', '754.00', 1);
 set @ziel_ro_bieg = last_insert_id();
@@ -127,9 +127,9 @@ set @nie_ro_bie = last_insert_id();
 insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('czerwony rowerek biegowy', '123.00', 1);
 set @czer_ro_bie = last_insert_id();
 
-select *from produkty;
+-- select *from produkty;
 
-select * from szczegoly;
+-- select * from szczegoly;
 							
 alter table klienci auto_increment=10000;
                                 
@@ -146,6 +146,8 @@ INSERT INTO szczegoly(id_zamówienia, LP, id_produktu, ilość, rabat) values (@
 insert into statusy_zamówień (id_zamówienia, data, status) values (@last_zamowienie_id,'2019-01-01 12:13:15','złożone');
 insert into statusy_zamówień (id_zamówienia, data, status) values (@last_zamowienie_id,'2019-01-10 10:13:15','opłacone');
 insert into statusy_zamówień (id_zamówienia, data, status) values (@last_zamowienie_id,'2020-01-11 11:13:15','zrealizowane');
+
+-- tutaj wiecej zamowien
 /*
 select LP,
 	   produkty.nazwa,
@@ -162,7 +164,7 @@ where szczegoly.id_zamówienia = zamówienia.id_zamówienia
   and produkty.id_stawka_VAT = stawka_VAT.id_stawka_VAT
 order by LP;
 */
-
+/*
 select * from szczegoly_zamowien
 where id_zamówienia = 1
 order by id_zamówienia, LP;
@@ -179,7 +181,7 @@ select id_zamówienia, max(data)
 from statusy_zamówień
 where data<NOW()
 group by id_zamówienia;
-
+*/
 /*
 iNSERT INTO zamówienia (id_klienta) values (@last_klient_id);
 set @last_zamowienie_id = last_insert_id();
