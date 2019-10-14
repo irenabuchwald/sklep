@@ -16,7 +16,7 @@ delete from stawka_VAT;
 
 create table stawka_VAT (id_stawka_VAT int primary key,	-- nazwa kolumny stawka_VAT.id_stawka_VAT				
 					nazwa  varchar (150),
-                    procent numeric (3,2)); -- za długie pole 99999999%; 23.50%; numeric(3,2); Twoje: kwota*(100+procent)/100; alternatywne (0.23): kwota*(1+procent)
+                    procent numeric (3,2)); -- za długie pole 99999999%; 23.50%; numeric(3,2); Twoje: kwota*(100+procent)/100; alternatywne (0.23): kwota*(1+procent) -- zrobione
 
 create table produkty (id_produktu int auto_increment primary key,
 					nazwa varchar (150) not null,
@@ -52,6 +52,7 @@ create table szczegóły (id_zamówienia int,
                         primary key(id_zamówienia, LP),
                         foreign key(id_zamówienia) references zamówienia(id_zamówienia),
                         foreign key(id_produktu) references produkty(id_produktu));
+                        
                         
 create or replace view szczegoly_zamowien as
 select id_zamówienia,
@@ -125,6 +126,8 @@ insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('czerwony rowere
 set @czer_ro_bie = last_insert_id();
 
 select *from produkty;
+
+select * from szczegóły;
 							
 alter table klienci auto_increment=10000;
                                 
