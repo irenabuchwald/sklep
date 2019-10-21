@@ -131,6 +131,8 @@ set @czer_ro_bie = last_insert_id();
 -- select * from szczegoly;
 							
 alter table klienci auto_increment=10000;
+-- zamowienie 1. 3 pozycje, rabat w 3.
+
                                 
 insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Jasio Wysoki', 'Polska', '52-658', 'lodz', 'sw. Teresy od Dzieciatka Jezus', '289');
 set @last_klient_id = last_insert_id();
@@ -146,7 +148,31 @@ insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowie
 insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-01-10 10:13:15','oplacone');
 insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2020-01-11 11:13:15','zrealizowane');
 
--- tutaj wiecej zamowien
+-- zamowienie 2, cztery poztycje, rabat w 2
+
+insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values  ('Ministerstwo Sprawiedliwosci', 'Polska', '00-950', 'Warszawa', 'Al. Ujazdowskie', '11');
+set @last_klient_id = last_insert_id();
+
+iNSERT INTO zamowienia(id_klienta) values (@last_klient_id);
+set @last_zamowienie_id = last_insert_id();
+
+INSERT INTO szczegoly(id_zamowienia, LP, id_produktu, ilosc) values (@last_zamowienie_id, 1, @go_elek_czar, 1);
+INSERT INTO szczegoly(id_zamowienia, LP, id_produktu, ilosc, rabat) values (@last_zamowienie_id, 2, @czer_ro_bie, 2, 0.02);
+INSERT INTO szczegoly(id_zamowienia, LP, id_produktu, ilosc) values (@last_zamowienie_id, 3, @kask_spor_czer, 1);
+INSERT INTO szczegoly(id_zamowienia, LP, id_produktu, ilosc) values (@last_zamowienie_id, 4, @sku_elek_czarny, 1);
+
+-- zamówienie 3, jedna pozycja, bez rabatu
+
+insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Gabinet Dziwnych Krokow', 'Polska', '00-000', 'Warszawa', 'zartobliwa', '18');
+set @last_klient_id = last_insert_id();
+
+iNSERT INTO zamowienia(id_klienta) values (@last_klient_id);
+set @last_zamowienie_id = last_insert_id();
+
+INSERT INTO szczegoly(id_zamowienia, LP, id_produktu, ilosc) values (@last_zamowienie_id, 1,  @ziel_ro_bieg, 1);
+
+
+
 /*
 select LP,
 	   produkty.nazwa,
@@ -201,8 +227,7 @@ set @last_zamowienie_id = last_insert_id();
 
 
 
-insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Jasio Wysoki', 'Niemcy', '52658', 'Berlin', 'Buchstrasse', '2');
-insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Ministerstwo Sprawiedliwosci', 'Polska', '00-950', 'Warszawa', 'Al. Ujazdowskie', '11');
+
 insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Gabinet Dziwnych Krokow', 'Polska', '00-000', 'Warszawa', 'zartobliwa', '18');
 insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Surf&Skate Wave Summer Camp', 'Polska', '59-258', 'Warszawa', 'Gorczewska', '147');
 insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Centrum Leczniczo-Rehabilitacyjne i Medycyny Pracy ATTIS Sp. z o.o.', 'Polska', '55-650','Warszawa', 'Gorczewska', '78');
@@ -214,52 +239,6 @@ insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('P
  
 select *from klienci;
 
-iNSERT INTO zamowienia (id_klienta, data) values (2, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (3, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (4, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (5, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (6, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (7, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (8, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (9, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (10, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (11, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (3, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (1, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (4, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (5, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (5, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (6, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (7, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (8, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (9, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (6, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (10, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (1, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (11, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (2, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (3, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (1, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (11, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (10, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (9, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (8, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (5, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (7, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (5, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (9, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (8, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (4, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (1, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (2, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (4, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (5, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (10, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (11, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (9, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (8, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (7, NOW());
-iNSERT INTO zamowienia (id_klienta, data) values (4, NOW());
                                            
 select*from zamowienia;    
 				                      
