@@ -17,7 +17,7 @@ delete from stawka_VAT;
 
 create table stawka_VAT (id_stawka_VAT int primary key,	-- nazwa kolumny stawka_VAT.id_stawka_VAT				
 					nazwa  varchar (150),
-                    procent numeric (3,2)); -- za dlugie pole 99999999%; 23.50%; numeric(3,2); Twoje: kwota*(100+procent)/100; alternatywne (0.23): kwota*(1+procent) -- zrobione
+                    procent numeric (3,2)); 
 
 create table produkty (id_produktu int auto_increment primary key,
 					nazwa varchar (150) not null,
@@ -163,16 +163,28 @@ INSERT INTO szczegoly(id_zamowienia, LP, id_produktu, ilosc) values (@last_zamow
 
 -- zamówienie 3, jedna pozycja, bez rabatu
 
-insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Gabinet Dziwnych Krokow', 'Polska', '00-000', 'Warszawa', 'zartobliwa', '18');
+insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Gabinet Dziwnych Krokow', 'Polska', '00-000', 'Warszawa', 'Zartobliwa', '18');
 set @last_klient_id = last_insert_id();
 
 iNSERT INTO zamowienia(id_klienta) values (@last_klient_id);
 set @last_zamowienie_id = last_insert_id();
 
-INSERT INTO szczegoly(id_zamowienia, LP, id_produktu, ilosc) values (@last_zamowienie_id, 1,  @ziel_ro_bieg, 1);
+INSERT INTO szczegoly(id_zamowienia, LP, id_produktu, ilosc) values (@last_zamowienie_id, 1, @ziel_ro_bieg, 1);
+-- 4 zamowienie
 
+insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values  ('Surf&Skate Wave Summer Camp', 'Polska', '59-258', 'Warszawa', 'Gorczewska', '147');
+set @last_klient_id = last_insert_id();
 
+insert into zamowienia(id_klienta) values (@last_klient_id);
+set @last_zamowienie_id = last_insert_id();
 
+INSERT INTO szczegoly(id_zamowienia, LP, id_produktu, ilosc, rabat) values (@last_zamowienie_id, 1, @czer_ro_bie, 2, 0.02);
+insert into szczegoly(id_zamowienia, LP, id_produktu, ilosc, rabat) values (@last_zamowienie_id, 2, @hul_ele, 12, 0.06);
+insert into szczegoly(id_zamowienia, LP, id_produktu, ilosc, rabat) values (@last_zamowienie_id, 3, @wrotki_retro, 3, 0.02);
+insert into szczegoly(id_zamowienia, LP, id_produktu, ilosc) values (@last_zamowienie_id, 4, @rolki, 1);
+insert into szczegoly(id_zamowienia, LP, id_produktu, ilosc, rabat) values (@last_zamowienie_id, 5, @czer_ro_bie, 3, 0.05);
+
+--
 /*
 select LP,
 	   produkty.nazwa,
@@ -228,8 +240,8 @@ set @last_zamowienie_id = last_insert_id();
 
 
 
-insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Gabinet Dziwnych Krokow', 'Polska', '00-000', 'Warszawa', 'zartobliwa', '18');
-insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Surf&Skate Wave Summer Camp', 'Polska', '59-258', 'Warszawa', 'Gorczewska', '147');
+
+
 insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Centrum Leczniczo-Rehabilitacyjne i Medycyny Pracy ATTIS Sp. z o.o.', 'Polska', '55-650','Warszawa', 'Gorczewska', '78');
 insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Osrodek Wypoczynkowy Marysienka', 'Polska', '26-400', 'Przysucha', 'Topornia', '23');
 insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Osrodek Wypoczynkowy Relax', 'Polska', '85-134', 'Radom', 'Klasztorna', '65');
