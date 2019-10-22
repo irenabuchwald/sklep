@@ -216,7 +216,40 @@ insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowie
 insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-01-02 08:43:36','zrealizowane');
 
 
--- zamowienie 6. 
+-- zamowienie 6. powtorzone zamowienie nr 1,  3 pozycje, rabat w 3, zamowienie zrealizowane po roku
+                                
+insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Jasio Wysoki', 'Polska', '52-658', 'lodz', 'sw. Teresy od Dzieciatka Jezus', '289');
+set @last_klient_id = last_insert_id();
+
+iNSERT INTO zamowienia(id_klienta) values (@last_klient_id);
+set @last_zamowienie_id = last_insert_id();
+
+INSERT INTO szczegoly(id_zamowienia, LP, id_produktu, ilosc) values (@last_zamowienie_id, 1, @kask_spor_czer, 2);
+INSERT INTO szczegoly(id_zamowienia, LP, id_produktu, ilosc) values (@last_zamowienie_id, 2, @ziel_ro_bieg, 1);
+INSERT INTO szczegoly(id_zamowienia, LP, id_produktu, ilosc, rabat) values (@last_zamowienie_id, 3, @czer_ro_bie, 1, 0.05);
+
+insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-01-01 12:13:15','zlozone');
+insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-01-10 10:13:15','oplacone');
+insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2020-01-11 11:13:15','zrealizowane');
+
+-- zamowienie 7. Dwie pozycje bez rabatu
+
+insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Osrodek Wypoczynkowy Marysienka', 'Polska', '26-400', 'Przysucha', 'Topornia', '23');
+set @last_klient_id = last_insert_id();
+
+iNSERT INTO zamowienia(id_klienta) values (@last_klient_id);
+set @last_zamowienie_id = last_insert_id();
+
+INSERT INTO szczegoly(id_zamowienia, LP, id_produktu, ilosc) values (@last_zamowienie_id, 1, @wrot_nowo, 4);
+INSERT INTO szczegoly(id_zamowienia, LP, id_produktu, ilosc) values (@last_zamowienie_id, 2, @desko_elek, 1);
+
+
+insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-02-11 02:52:55','zlozone');
+insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-03-10 11:18:35','oplacone');
+insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-03-11 19:43:28','zrealizowane');
+
+
+
 
 
 
@@ -277,7 +310,7 @@ set @last_zamowienie_id = last_insert_id();
 
 
 
-insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Centrum Leczniczo-Rehabilitacyjne i Medycyny Pracy ATTIS Sp. z o.o.', 'Polska', '55-650','Warszawa', 'Gorczewska', '78');
+
 insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Osrodek Wypoczynkowy Marysienka', 'Polska', '26-400', 'Przysucha', 'Topornia', '23');
 insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Osrodek Wypoczynkowy Relax', 'Polska', '85-134', 'Radom', 'Klasztorna', '65');
 insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Osrodek Reprezentacyjny Ministerstwa Obrony Narodowej', 'Polska', '05-800', 'Pruszkow', 'Grodziska', '1');					
