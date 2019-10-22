@@ -161,6 +161,11 @@ INSERT INTO szczegoly(id_zamowienia, LP, id_produktu, ilosc, rabat) values (@las
 INSERT INTO szczegoly(id_zamowienia, LP, id_produktu, ilosc) values (@last_zamowienie_id, 3, @kask_spor_czer, 1);
 INSERT INTO szczegoly(id_zamowienia, LP, id_produktu, ilosc) values (@last_zamowienie_id, 4, @sku_elek_czarny, 1);
 
+insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-01-03 12:13:15','zlozone');
+insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-01-03 12:13:30','oplacone');
+insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2020-01-10 11:13:15','zrealizowane');
+
+
 -- zamówienie 3, jedna pozycja, bez rabatu
 
 insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Gabinet Dziwnych Krokow', 'Polska', '00-000', 'Warszawa', 'Zartobliwa', '18');
@@ -170,6 +175,10 @@ iNSERT INTO zamowienia(id_klienta) values (@last_klient_id);
 set @last_zamowienie_id = last_insert_id();
 
 INSERT INTO szczegoly(id_zamowienia, LP, id_produktu, ilosc) values (@last_zamowienie_id, 1, @ziel_ro_bieg, 1);
+
+insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-01-06 01:13:15','zlozone');
+insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-01-08 19:25:50','oplacone');
+insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2020-01-12 15:25:15','zrealizowane');
 -- 4 zamowienie
 
 insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values  ('Surf&Skate Wave Summer Camp', 'Polska', '59-258', 'Warszawa', 'Gorczewska', '147');
@@ -183,6 +192,10 @@ insert into szczegoly(id_zamowienia, LP, id_produktu, ilosc, rabat) values (@las
 insert into szczegoly(id_zamowienia, LP, id_produktu, ilosc, rabat) values (@last_zamowienie_id, 3, @wrotki_retro, 3, 0.02);
 insert into szczegoly(id_zamowienia, LP, id_produktu, ilosc) values (@last_zamowienie_id, 4, @rolki, 1);
 insert into szczegoly(id_zamowienia, LP, id_produktu, ilosc, rabat) values (@last_zamowienie_id, 5, @czer_ro_bie, 3, 0.05);
+
+insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-01-04 02:23:35','zlozone');
+insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-01-04 02:25:00','oplacone');
+insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2020-01-21 08:43:36','zrealizowane');
 
 --
 /*
