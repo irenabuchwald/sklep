@@ -47,14 +47,19 @@ Na etapie tworzenia schematu powstały również przykładowe dane do testowania
 
 | LP | Opis scenariusza testowego | Nazwa klienta | Opis zamówienia |
 | --- | --- | --- | --- |
-| 1 | Trzy pozycje w zamówieniu, rabat dla każdej pozycji | Jasio Wysoki | Kask sportowy czerwony, Zielony rowerek biegowy, Czerwony rowerek biegowy | zamowienie zrealizowane po upływie roku|
+| 1 | Trzy pozycje w zamówieniu, rabat dla każdej pozycji, zamowienie zrealizowane po upływie roku | Jasio Wysoki | Kask sportowy czerwony, Zielony rowerek biegowy, Czerwony rowerek biegowy | 
 | 2 | Cztery pozycje, rabat tylko dla dwóch z nich, po oplaceniue status zlozone zamiast zrealizowane czy oplacone| Minsterstwo Sprawiedliwości | Gokart elektryczny czarny i inne... |
 | 3 | Jedna pozycja, bez rabatu | Gabinet Dziwnych Kroków | Zielony rowerek biegowy |
 | 4 | Trzy  pozycje z rabatem, jedna bez rabatu, różne stawki rabatu, w 1 i 5 pozycji zamowienia jest ten sam towar, ale z roznym rabatem| Surf&Skate ... | Czerwony rowerek biegowy |
 | 5 | Przelom roku, jeda pozycja z rabatem, zlozone  i oplacone w 2018, zrealizowane w 2019 | Centrum Leczniczo-Rehabilitacyjne i Medycyny Pracy ATTIS | Hulajnoga napędzana noga i inne ...|
-| 6 | Powtorzone zamowienie nr 1 | Trzy pozycje w zamówieniu, rabat dla każdej pozycji | Jasio Wysoki | Kask sportowy czerwony, Zielony rowerek biegowy, Czerwony rowerek biegowy | zamowienie zrealizowane po upływie roku|
+| 6 | Powtorzone zamowienie nr 1 | Trzy pozycje w zamówieniu, rabat dla każdej pozycji, zamowienie zrealizowane po upływie roku | Jasio Wysoki | Kask sportowy czerwony, Zielony rowerek biegowy, Czerwony rowerek biegowy 
 | 7 | Dwie pozycje bez rabatu | Osrodek Wypoczynkowy Marysienka | Wrotki nowoczesne i inne ... |
-| 8 | 
-
+| 8 | Dwie pozycje bez rabatu. Natychmiastowa platnosc | Osrodek Wypoczynkowy Relax | Gokard elektryczny zielony i inne...|
+| 9 | Trzy pozycje, w trzeciej jest rabat | Osrodek Reprezentacyjny Ministerstwa Obrony Narodowej | Skuter elektryczny czarny i inne ...|
+|10 | Nabywca ten sam co w zamowieniu 9. Bez rabatu | Osrodek Reprezentacyjny Ministerstwa Obrony Narodowej | Niebieski rowerek biegowy i inne ...|
+|11 | Bez rabatu | Department of Child and Adolescent Psychiatry | Hulajnoga elektryczna, Wrotki retro, Kask sportowy czerwony |
+|12 | Bardzo duza ilosc produktow. Bez rabatu. | Poradnia Rehabilitacyjna dla Dzieci im. Wladyslawa Basiaka | Hulajnoga elektryczna, Wrotki retro, Kask sportowy czerwony |
+|13 | Najpierw oplacone, nastepnie zlozone i zrealizowane. Bez rabatu. | Poradnia Rehabilitacyjna dla Dzieci im. Wladyslawa Basiaka | Rolki, Wrotki retro |
+|14 | Ponowne zamowienie z Osrodka MON. Z rabatem. | Osrodek Reprezentacyjny Ministerstwa Obrony Narodowej | Czerwony rowerek biegowy|
 
 **Kolejne scenariusze testowe dopisujemy tutaj**
