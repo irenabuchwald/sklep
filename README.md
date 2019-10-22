@@ -47,9 +47,11 @@ Na etapie tworzenia schematu powstały również przykładowe dane do testowania
 
 | LP | Opis scenariusza testowego | Nazwa klienta | Opis zamówienia |
 | --- | --- | --- | --- |
-| 1 | Trzy pozycje w zamówieniu, rabat dla każdej pozycji | Jasio Wysoki | Kask sportowy czerwony, Zielony rowerek biegowy, Czerwony rowerek biegowy |
-| 2 | Cztery pozycje, rabat tylko dla dwóch z nich | Minsterstwo Sprawiedliwości | Gokart elektryczny czarny i inne... |
+| 1 | Trzy pozycje w zamówieniu, rabat dla każdej pozycji | Jasio Wysoki | Kask sportowy czerwony, Zielony rowerek biegowy, Czerwony rowerek biegowy | zamowienie zrealizowane po upływie roku|
+| 2 | Cztery pozycje, rabat tylko dla dwóch z nich, po oplaceniue status zlozone zamiast zrealizowane czy oplacone| Minsterstwo Sprawiedliwości | Gokart elektryczny czarny i inne... |
 | 3 | Jedna pozycja, bez rabatu | Gabinet Dziwnych Kroków | Zielony rowerek biegowy |
-| 4 | Czwarte zamówienie... | Surf&Skate ... | Czerwony rowerek biegowy |
+| 4 | 3 pozycje z rabatem, jedna bez rabatu, różne stawki rabatu, w 1 i 5 pozycji zamowienia jest ten sam towar, ale z roznym rabatem| Surf&Skate ... | Czerwony rowerek biegowy |
+| 5 |zamowienie 5. przelom roku, jeda pozycja z rabatem, zlozone  i oplacone w 2018, zrealizowane w 2019 | Centrum Leczniczo-Rehabilitacyjne i Medycyny Pracy ATTIS | Hulajnoga napędzana noga i inne ...|
+
 
 **Kolejne scenariusze testowe dopisujemy tutaj**
