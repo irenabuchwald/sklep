@@ -93,7 +93,8 @@ insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('rolki', '549.22
 set @rolki = last_insert_id();
 insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('czerwony rowerek biegowy', '954.00', 1);
 set @czer_ro_bie = last_insert_id();
-insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('hulajnoga napędzana noga', '905.00', 2);
+insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('hulajnoga napedzana noga', '905.00', 2);
+
 set @hul_nap_noga = last_insert_id();
 insert into produkty (nazwa, cena_netto, id_stawka_VAT) values ('ochraniacze na lokcie', '150.23', 4);
 set @ochr_na_lok = last_insert_id();
