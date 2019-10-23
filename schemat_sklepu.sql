@@ -135,7 +135,7 @@ alter table klienci auto_increment=10000;
 -- zamowienie 1. 3 pozycje, rabat w 3, zamowienie zrealizowane po roku
 
                                 
-insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Jasio Wysoki', 'Polska', '52-658', 'lodz', 'sw. Teresy od Dzieciatka Jezus', '289');
+insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Jasio Wysoki', 'Polska', '52-658', 'Lodz', 'sw. Teresy od Dzieciatka Jezus', '289');
 set @last_klient_id = last_insert_id();
 
 iNSERT INTO zamowienia(id_klienta) values (@last_klient_id);
@@ -219,7 +219,7 @@ insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowie
 
 -- zamowienie 6. powtorzone zamowienie nr 1,  3 pozycje, rabat w 3, zamowienie zrealizowane po roku
                                 
-insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Jasio Wysoki', 'Polska', '52-658', 'lodz', 'sw. Teresy od Dzieciatka Jezus', '289');
+insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Jasio Wysoki', 'Polska', '52-658', 'Lodz', 'sw. Teresy od Dzieciatka Jezus', '289');
 set @last_klient_id = last_insert_id();
 
 iNSERT INTO zamowienia(id_klienta) values (@last_klient_id);
