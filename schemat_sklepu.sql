@@ -415,10 +415,8 @@ set @last_klient_id = last_insert_id();
 iNSERT INTO zamowienia (id_klienta) values (@last_klient_id);
 set @last_zamowienie_id = last_insert_id();
 
-
+*/
  
 select *from klienci;
 
-                                           
-select*from zamowienia;    
 
