@@ -296,7 +296,7 @@ iNSERT INTO zamowienia(id_klienta) values (@last_klient_id);
 set @last_zamowienie_id = last_insert_id();
 
 INSERT INTO szczegoly(id_zamowienia, LP, id_produktu, ilosc) values (@last_zamowienie_id, 1,  @nie_ro_bie, 1);
-INSERT INTO szczegoly(id_zamowienia, LP, id_produktu, ilosc) values (@last_zamowienie_id, 2,  @cze_ro_bie, 1);
+INSERT INTO szczegoly(id_zamowienia, LP, id_produktu, ilosc) values (@last_zamowienie_id, 2,  @czer_ro_bie, 1);
 INSERT INTO szczegoly(id_zamowienia, LP, id_produktu, ilosc) values (@last_zamowienie_id, 3,  @kask_spor_czer, 1);
 
 insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-02-21 10:13:15','zlozone');
