@@ -149,6 +149,22 @@ insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowie
 insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-01-10 10:13:15','oplacone');
 insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2020-01-11 11:13:15','zrealizowane');
 
+
+-- zamowienie x  powtorzone zamowienie nr 1,  3 pozycje, rabat w 3, zamowienie zrealizowane po roku
+                                
+
+iNSERT INTO zamowienia(id_klienta) values (@last_klient_id);
+set @last_zamowienie_id = last_insert_id();
+
+INSERT INTO szczegoly(id_zamowienia, LP, id_produktu, ilosc) values (@last_zamowienie_id, 1, @kask_spor_czer, 2);
+INSERT INTO szczegoly(id_zamowienia, LP, id_produktu, ilosc) values (@last_zamowienie_id, 2, @ziel_ro_bieg, 1);
+INSERT INTO szczegoly(id_zamowienia, LP, id_produktu, ilosc, rabat) values (@last_zamowienie_id, 3, @czer_ro_bie, 1, 0.05);
+
+insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-01-01 12:13:15','zlozone');
+insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-01-10 10:13:15','oplacone');
+insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2020-01-11 11:13:15','zrealizowane');
+
+
 -- zamowienie 2, cztery poztycje, rabat w 2, niezrealizowane, po oplaceniu status zlozone
 
 insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values  ('Ministerstwo Sprawiedliwosci', 'Polska', '00-950', 'Warszawa', 'Al. Ujazdowskie', '11');
@@ -180,6 +196,7 @@ INSERT INTO szczegoly(id_zamowienia, LP, id_produktu, ilosc) values (@last_zamow
 insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-01-06 01:13:15','zlozone');
 insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-01-08 19:25:50','oplacone');
 insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-01-12 15:25:15','zrealizowane');
+
 -- 4 zamowienie, 3 pozycje z rabatem, jedna bez rabatu, różne stawki rabatu, w 1 i 5 pozycji zamowienia jest ten sam towar, ale z roznym rabatem
 
 insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values  ('Surf&Skate Wave Summer Camp', 'Polska', '59-258', 'Warszawa', 'Gorczewska', '147');
@@ -217,21 +234,7 @@ insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowie
 insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-01-02 08:43:36','zrealizowane');
 
 
--- zamowienie 6. powtorzone zamowienie nr 1,  3 pozycje, rabat w 3, zamowienie zrealizowane po roku
-                                
--- insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Jasio Wysoki', 'Polska', '52-658', 'Lodz', 'sw. Teresy od Dzieciatka Jezus', '289');
--- set @last_klient_id = last_insert_id();
 
-iNSERT INTO zamowienia(id_klienta) values (@last_klient_id);
-set @last_zamowienie_id = last_insert_id();
-
-INSERT INTO szczegoly(id_zamowienia, LP, id_produktu, ilosc) values (@last_zamowienie_id, 1, @kask_spor_czer, 2);
-INSERT INTO szczegoly(id_zamowienia, LP, id_produktu, ilosc) values (@last_zamowienie_id, 2, @ziel_ro_bieg, 1);
-INSERT INTO szczegoly(id_zamowienia, LP, id_produktu, ilosc, rabat) values (@last_zamowienie_id, 3, @czer_ro_bie, 1, 0.05);
-
-insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-01-01 12:13:15','zlozone');
-insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-01-10 10:13:15','oplacone');
-insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2020-01-11 11:13:15','zrealizowane');
 
 -- zamowienie 7. Dwie pozycje bez rabatu
 
@@ -300,6 +303,17 @@ insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowie
 insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-02-21 10:21:35','oplacone');
 insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-02-25 11:43:45','zrealizowane');
 
+-- kolejne zamowienie MON
+
+iNSERT INTO zamowienia(id_klienta) values (@last_klient_id);
+set @last_zamowienie_id = last_insert_id();
+
+INSERT INTO szczegoly(id_zamowienia, LP, id_produktu, ilosc, rabat) values (@last_zamowienie_id, 1, @czer_ro_bie, 10, 0.04);
+
+insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-03-11 10:43:35','zlozone');
+insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-03-11 20:34:32','oplacone');
+insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-03-12 21:35:35','zrealizowane');
+
 -- zamowienie 11. Bez rabatu.
 
 insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Department of Child and Adolescent Psychiatry', 'Polska', '60-567', 'Poznan', 'Szpitalna', '27/33');
@@ -333,10 +347,8 @@ insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowie
 insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-03-12 21:43:44','zrealizowane');
 
 
--- zamowienie 13. Najpierw oplacone, nastepnie zlozone i zrealizowane. Bez rabatu.
+-- zamowienie 13. Najpierw oplacone, nastepnie zlozone i zrealizowane. Bez rabatu. Dla Poradnia Rehabilitacyjna dla Dzieci im. Wladyslawa Basiaka
 
--- insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values  ('Poradnia Rehabilitacyjna dla Dzieci im. Wladyslawa Basiaka', 'Polska', '26-610', 'Radom', 'Mikolaja Reja', '26');
--- set @last_klient_id = last_insert_id();
 
 iNSERT INTO zamowienia(id_klienta) values (@last_klient_id);
 set @last_zamowienie_id = last_insert_id();
@@ -349,19 +361,9 @@ insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowie
 insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-03-01 17:00:34','oplacone');
 insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-03-10 01:43:44','zrealizowane');
 
--- zamowienie 14. Ponowne zamowienie z Osrodka MON. Z rabatem. 
 
--- insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Osrodek Reprezentacyjny Ministerstwa Obrony Narodowej', 'Polska', '05-800', 'Pruszkow', 'Grodziska', '1');	
--- set @last_klient_id = last_insert_id();
 
-iNSERT INTO zamowienia(id_klienta) values (@last_klient_id);
-set @last_zamowienie_id = last_insert_id();
 
-INSERT INTO szczegoly(id_zamowienia, LP, id_produktu, ilosc, rabat) values (@last_zamowienie_id, 3, @czer_ro_bie, 10, 0.04);
-
-insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-03-11 10:43:35','zlozone');
-insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-03-11 20:34:32','oplacone');
-insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-03-12 21:35:35','zrealizowane');
 
 /*
 
