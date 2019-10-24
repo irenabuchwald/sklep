@@ -219,8 +219,8 @@ insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowie
 
 -- zamowienie 6. powtorzone zamowienie nr 1,  3 pozycje, rabat w 3, zamowienie zrealizowane po roku
                                 
-insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Jasio Wysoki', 'Polska', '52-658', 'Lodz', 'sw. Teresy od Dzieciatka Jezus', '289');
-set @last_klient_id = last_insert_id();
+-- insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Jasio Wysoki', 'Polska', '52-658', 'Lodz', 'sw. Teresy od Dzieciatka Jezus', '289');
+-- set @last_klient_id = last_insert_id();
 
 iNSERT INTO zamowienia(id_klienta) values (@last_klient_id);
 set @last_zamowienie_id = last_insert_id();
@@ -286,8 +286,8 @@ insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowie
 -- zamowienie 10. Nabywca ten sam co w zamowieniu 9. Bez rabatu.
 
 
-insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Osrodek Reprezentacyjny Ministerstwa Obrony Narodowej', 'Polska', '05-800', 'Pruszkow', 'Grodziska', '1');	
-set @last_klient_id = last_insert_id();
+-- insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Osrodek Reprezentacyjny Ministerstwa Obrony Narodowej', 'Polska', '05-800', 'Pruszkow', 'Grodziska', '1');	
+-- set @last_klient_id = last_insert_id();
 
 iNSERT INTO zamowienia(id_klienta) values (@last_klient_id);
 set @last_zamowienie_id = last_insert_id();
@@ -335,8 +335,8 @@ insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowie
 
 -- zamowienie 13. Najpierw oplacone, nastepnie zlozone i zrealizowane. Bez rabatu.
 
-insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values  ('Poradnia Rehabilitacyjna dla Dzieci im. Wladyslawa Basiaka', 'Polska', '26-610', 'Radom', 'Mikolaja Reja', '26');
-set @last_klient_id = last_insert_id();
+-- insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values  ('Poradnia Rehabilitacyjna dla Dzieci im. Wladyslawa Basiaka', 'Polska', '26-610', 'Radom', 'Mikolaja Reja', '26');
+-- set @last_klient_id = last_insert_id();
 
 iNSERT INTO zamowienia(id_klienta) values (@last_klient_id);
 set @last_zamowienie_id = last_insert_id();
@@ -351,8 +351,8 @@ insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowie
 
 -- zamowienie 14. Ponowne zamowienie z Osrodka MON. Z rabatem. 
 
-insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Osrodek Reprezentacyjny Ministerstwa Obrony Narodowej', 'Polska', '05-800', 'Pruszkow', 'Grodziska', '1');	
-set @last_klient_id = last_insert_id();
+-- insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Osrodek Reprezentacyjny Ministerstwa Obrony Narodowej', 'Polska', '05-800', 'Pruszkow', 'Grodziska', '1');	
+-- set @last_klient_id = last_insert_id();
 
 iNSERT INTO zamowienia(id_klienta) values (@last_klient_id);
 set @last_zamowienie_id = last_insert_id();
