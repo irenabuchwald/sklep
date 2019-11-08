@@ -61,5 +61,12 @@ Na etapie tworzenia schematu powstały również przykładowe dane do testowania
 |12 | Bardzo duza ilosc produktow. Bez rabatu. | Poradnia Rehabilitacyjna dla Dzieci im. Wladyslawa Basiaka | Hulajnoga elektryczna, Wrotki retro, Kask sportowy czerwony |
 |13 | Najpierw oplacone, nastepnie zlozone i zrealizowane. Bez rabatu. | Poradnia Rehabilitacyjna dla Dzieci im. Wladyslawa Basiaka | Rolki, Wrotki retro |
 |14 | Ponowne zamowienie z Osrodka MON. Z rabatem. | Osrodek Reprezentacyjny Ministerstwa Obrony Narodowej | Czerwony rowerek biegowy|
+|15 | Zamówienia klientow zagranicznych:
+      Klient S-001-P01 - adres w Niemczech | Helga Muller| Lützowplatz 17, 10785 Berlin, Germany| skuter elektryczny bialy, 1 szt.|
+      Klient S-001-N01 - adres w Polsce | Kindergarten No. 318 "Green Corner" | Jana Kochanowskiego 9A, 01-864 Warszawa | zielony rowerek biegowy i czerwony rowerek biegowy | 
+
+
+
+
 
 **Kolejne scenariusze testowe dopisujemy tutaj**

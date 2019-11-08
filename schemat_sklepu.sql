@@ -382,7 +382,7 @@ where szczegoly.id_zamowienia = zamowienia.id_zamowienia
   and produkty.id_stawka_VAT = stawka_VAT.id_stawka_VAT
 order by LP;
 */
-/*
+
 select * from szczegoly_zamowien
 where id_zamowienia = 1
 order by id_zamowienia, LP;
@@ -399,26 +399,8 @@ select id_zamowienia, max(data)
 from statusy_zamowien
 where data<NOW()
 group by id_zamowienia;
-*/
-/*
-iNSERT INTO zamowienia (id_klienta) values (@last_klient_id);
-set @last_zamowienie_id = last_insert_id();
 
-insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-01-01 12:13:15','zlozone');
-insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-01-10 10:13:15','oplacone');
-insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-01-11 11:13:15','zrealizowane');
-iNSERT INTO zamowienia (id_klienta, data) values (@last_klient_id, NOW());
-set @last_zamowienie_id = last_insert_id();
 
-iNSERT INTO zamowienia (id_klienta, data) values (@last_klient_id, NOW());
-set @last_zamowienie_id = last_insert_id();
--- ...
-insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('EURO-net Sp. z o.o.', 'Polska', '02-447', 'Warszawa',  'Muszkieterow', '254');
-set @last_klient_id = last_insert_id();
-iNSERT INTO zamowienia (id_klienta) values (@last_klient_id);
-set @last_zamowienie_id = last_insert_id();
-
-*/
  
 select *from klienci;
 
