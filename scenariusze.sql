@@ -4,7 +4,6 @@ set @hul_ele = (select id_produktu from produkty where nazwa = 'hulajnoga elektr
 
 /* Czyszczenie wszystkich danych testowych */
 /* Ten identyfikator pasuje do kazdegow wzorca Klient S-001-P01, wiec usuniemy wszystkie dane wszystkich scenariuszy */
-
 set @identyfikator_scenariusza = 'Klient S-___-___' COLLATE utf8mb4_unicode_ci;
 
 /* Usuwamy statusy zamowien zlozonych przez klientow pasujacych do wzorca */
@@ -51,10 +50,9 @@ insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowie
 /* Zapytania zdefiniowane w scenariuszach testowych */
 
 /* Scenariusz S-001 - kwerenda wybierająca zamówienia klientów zagranicznych */
-
 select klienci.nazwa, zamowienia.id_zamowienia, szczegoly_zamowien.LP, szczegoly_zamowien.nazwa_produktu 
   from klienci, zamowienia, szczegoly_zamowien
  where zamowienia.id_klienta = klienci.id_klienta
    and szczegoly_zamowien.id_zamowienia = zamowienia.id_zamowienia
-   /* tu jest sendo zapytania */
+   /* tu jest sedno zapytania */
    and klienci.kraj <> 'Polska';
