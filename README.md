@@ -63,3 +63,25 @@ Na etapie tworzenia schematu powstały również przykładowe dane do testowania
 |14 | Ponowne zamowienie z Osrodka MON. Z rabatem. | Osrodek Reprezentacyjny Ministerstwa Obrony Narodowej | Czerwony rowerek biegowy|
 
 **Kolejne scenariusze testowe dopisujemy tutaj**
+
+# Konkretne przypadki testowe
+
+Oto lista konkretnych przypadków testowych i danych utworzonych na ich potrzeby.
+
+| ID | Opis scenariusza testowego | Nazwy klientów | Opis zamówienia |
+| --- | --- | --- | --- | 
+| S-001 | Zamówienia klientów zagranicznych | S-001-P01, S-001-N01 | Nieistotne |
+
+# Kwerendy zawierające rozwiązania przypadków testowych
+
+## S-001 - Zamówienia klientów zagranicznych
+
+Kwerenda SQL wybierająca poszukiwane dane
+
+```sql
+select klienci.nazwa, zamowienia.id_zamowienia, szczegoly_zamowien.LP, szczegoly_zamowien.nazwa_produktu 
+  from klienci, zamowienia, szczegoly_zamowien
+ where zamowienia.id_klienta = klienci.id_klienta
+   and szczegoly_zamowien.id_zamowienia = zamowienia.id_zamowienia
+   and klienci.kraj <> 'Polska';
+```
