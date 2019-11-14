@@ -1,3 +1,4 @@
+
 /* Pobranie wspólnych zmiennych */
 set @ziel_ro_bieg = (select id_produktu from produkty where nazwa = 'zielony rowerek biegowy');
 set @hul_ele = (select id_produktu from produkty where nazwa = 'hulajnoga elektryczna');
@@ -56,3 +57,60 @@ select klienci.nazwa, zamowienia.id_zamowienia, szczegoly_zamowien.LP, szczegoly
    and szczegoly_zamowien.id_zamowienia = zamowienia.id_zamowienia
    /* tu jest sedno zapytania */
    and klienci.kraj <> 'Polska';
+
+
+
+/* Scenariusz S-002 - tworzenie danych:
+
+
+| ID | Opis scenariusza testowego | Nazwy klientów | Opis zamówienia |Status zamówienia |
+|S-002 | Zamówienie opłacone w ciągu dwóch tygodni | S-002-N01 | nieistotne | opłacone |
+*/
+
+insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Klient S-002-N01', 'Niemcy', 'D-1215', 'Berlin', 'Alexanderplatz', '12');
+set @last_klient_id = last_insert_id();
+
+INSERT INTO zamowienia(id_klienta) values (@last_klient_id);
+set @last_zamowienie_id = last_insert_id();
+
+INSERT INTO szczegoly(id_zamowienia, LP, id_produktu, ilosc) values (@last_zamowienie_id, 1, @ziel_ro_bieg, 1);
+
+insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-01-01 12:13:15','zlozone');
+insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-01-10 10:13:15','oplacone');
+
+
+/* Scenariusz S-002 - tworzenie danych:
+ID | Opis scenariusza testowego | Nazwy klientów | Opis zamówienia |Status zamówienia |
+|S-002 | Zamówienie nie opłacone w ciągu dwóch tygodni | S-002-P01 | nieistotne | nie opłacone |
+*/ 
+
+
+insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Klient S-002-P01', 'Polska', '01-235', 'Warszawa', 'Jacka Placka', '1');
+set @last_klient_id = last_insert_id();
+
+INSERT INTO zamowienia(id_klienta) values (@last_klient_id);
+set @last_zamowienie_id = last_insert_id();
+
+INSERT INTO szczegoly(id_zamowienia, LP, id_produktu, ilosc) values (@last_zamowienie_id, 1, @czer_ro_bie, 1);
+
+insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-02-01 12:13:15','zlozone');
+insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-02-28 10:13:15','oplacone');
+
+/* Scenariusz S-002 - tworzenie danych:
+ID | Opis scenariusza testowego | Nazwy klientów | Opis zamówienia |Status zamówienia |
+|S-002 | Zamówienie nie opłacone | S-002-P02 | nieistotne | nie opłacone |
+*/ 
+
+
+insert into klienci (nazwa, kraj, kod_pocztowy, miasto, ulica, numer) values ('Klient S-002-P02', 'Polska', '01-005', 'Warszawa', 'Kaczencowa', '8');
+set @last_klient_id = last_insert_id();
+
+INSERT INTO zamowienia(id_klienta) values (@last_klient_id);
+set @last_zamowienie_id = last_insert_id();
+
+INSERT INTO szczegoly(id_zamowienia, LP, id_produktu, ilosc) values (@last_zamowienie_id, 1, @wrotki_retro, 1);
+
+insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-02-11 12:13:15','zlozone');
+
+
+select * from klienci;
