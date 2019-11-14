@@ -92,3 +92,16 @@ select klienci.nazwa, zamowienia.id_zamowienia, szczegoly_zamowien.LP, szczegoly
    and szczegoly_zamowien.id_zamowienia = zamowienia.id_zamowienia
    and klienci.kraj <> 'Polska';
 ```
+
+# Konkretne przypadki testowe
+
+| ID | Opis scenariusza testowego | Nazwy klientów | Opis zamówienia |Status zamówienia |
+|S-002 | Zamówienie opłacone w ciągu dwóch tygodni | S-002-N01 | nieistotne | opłacone |
+|S-002 | Zamówienie nie opłacone w ciągu dwóch tygodni | S-002-P01 | nieistotne | nie opłacone |
+|S-002 | Zamówienie nie opłacone | S-002-P02 | nieistotne | nie opłacone |
+
+## S-002 - Zamówienia, które nie zostały opłacone przez dwa tygodnie
+
+Kwerenda SQL wybierająca poszukiwane dane
+
+```sql
