@@ -64,6 +64,8 @@ insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowie
 /* Pobranie wspólnych zmiennych */
 set @ziel_ro_bieg = (select id_produktu from produkty where nazwa = 'zielony rowerek biegowy');
 set @hul_ele = (select id_produktu from produkty where nazwa = 'hulajnoga elektryczna');
+set @czer_ro_bie = (select id_produktu from produkty where nazwa = 'czerwony rowerek biegowy');
+set @wrotki_retro = (select id_produktu from produkty where nazwa = 'wrotki retro');
 
 
 
@@ -143,9 +145,21 @@ INSERT INTO szczegoly(id_zamowienia, LP, id_produktu, ilosc) values (@last_zamow
 insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowienie_id,'2019-02-11 12:13:15','zlozone');
 
 
-select klienci.nazwa, zamowienia.id_zamowienia, szczegoly_zamowien.LP, szczegoly_zamowien.nazwa_produktu, statusy_zamowien.status
-  from klienci, zamowienia, szczegoly_zamowien, statusy_zamowien
- where zamowienia.id_klienta = klienci.id_klienta
-   and szczegoly_zamowien.id_zamowienia = zamowienia.id_zamowienia
-  and status = 'oplacone';
 
+
+
+  select klienci.nazwa, zamowienia.id_zamowienia, statusy_zamowien.data as data_zlozenia
+  from zamowienia, statusy_zamowien, klienci
+ where klienci.id_klienta = zamowienia.id_klienta
+   and zamowienia.id_zamowienia = statusy_zamowien.id_zamowienia
+   and statusy_zamowien.status = 'zlozone';
+
+  
+  
+ -- and status = 'oplacone';
+ 
+ 
+ --  and SELECT DATEDIFF('zlozone', 'oplacone') AS 'Result'
+--   from statusy_zamowien;
+  
+-- select klienci.nazwa, zamowienia.id_zamowienia, szczegoly_zamowien.LP, szczegoly_zamowien.nazwa_produktu, statusy_zamowien.status
