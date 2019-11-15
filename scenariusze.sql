@@ -148,18 +148,37 @@ insert into statusy_zamowien (id_zamowienia, data, status) values (@last_zamowie
 
 
 
-  select klienci.nazwa, zamowienia.id_zamowienia, statusy_zamowien.data as data_zlozenia
+ /* select klienci.nazwa, zamowienia.id_zamowienia, statusy_zamowien.data as data_zlozenia
   from zamowienia, statusy_zamowien, klienci
  where klienci.id_klienta = zamowienia.id_klienta
    and zamowienia.id_zamowienia = statusy_zamowien.id_zamowienia
-   and statusy_zamowien.status = 'zlozone';
+   and statusy_zamowien.status = 'zlozone'
+   and select klienci.nazwa, zamowienia.id_zamowienia, statusy_zamowien.data as data_oplacenia
+  from zamowienia, statusy_zamowien, klienci
+ where klienci.id_klienta = zamowienia.id_klienta
+   and zamowienia.id_zamowienia = statusy_zamowien.id_zamowienia
+   and statusy_zamowien.status = 'oplacone';
+   */
+   
+   /*
+   select klienci.nazwa, zamowienia.id_zamowienia, s1.data as data_zlozenia, s2.data as data_oplacenia
+  from zamowienia, statusy_zamowien s1, statusy_zamowien s2, klienci
+ where klienci.id_klienta = zamowienia.id_klienta
+   and zamowienia.id_zamowienia = s1.id_zamowienia
+   and zamowienia.id_zamowienia = s2.id_zamowienia
+   and s1.status = 'zlozone'
+   and s2.status = 'oplacone';
 
-  
-  
- -- and status = 'oplacone';
- 
- 
- --  and SELECT DATEDIFF('zlozone', 'oplacone') AS 'Result'
---   from statusy_zamowien;
-  
--- select klienci.nazwa, zamowienia.id_zamowienia, szczegoly_zamowien.LP, szczegoly_zamowien.nazwa_produktu, statusy_zamowien.status
+select * from statusy_zamowien where id_zamowienia=3;
+
+*/ 
+select klienci.nazwa, zamowienia.id_zamowienia, s1.data as data_zlozenia, s2.data as data_oplacenia
+  from zamowienia, statusy_zamowien s1, statusy_zamowien s2, klienci
+ where klienci.id_klienta = zamowienia.id_klienta
+   and zamowienia.id_zamowienia = s1.id_zamowienia
+   and zamowienia.id_zamowienia = s2.id_zamowienia
+   and s1.status = 'zlozone'
+   and s2.status = 'oplacone'
+   and s2.data > s1.data;
+
+
